@@ -1,0 +1,47 @@
+.dia-header, .dia-cell {
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+mat-header-cell {
+    font-size: 22;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+mat-cell {
+    font-size: 14;
+    font-family: Roboto;
+}
+
+.detalles-header, .detalles-cell {
+    display: flex;
+    justify-content: center;
+    flex-grow: 8;
+}
+
+#subtable {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#mat-row-detalles {
+    width: 100%;
+}
+
+.detalles-cell-container {
+    flex-direction: row;
+}
+
+.tableContent {
+    overflow: scroll;
+}
+
+@media (max-width: 586px) {
+    #mat-header-row-detalles {
+        display: none;
+    }
+}

@@ -1,0 +1,49 @@
+<mat-table class="tableContent" matSort [dataSource]="dataSource">
+    <ng-container matColumnDef="dia">
+        <mat-header-cell class="dia-header" *matHeaderCellDef>Dia</mat-header-cell>
+        <mat-cell class="dia-cell" *matCellDef="let row">{{row.date}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="detalles">
+        <mat-header-cell class="detalles-header" *matHeaderCellDef>Detalles</mat-header-cell>
+        <ng-container *matCellDef="let element">
+            <mat-cell class="detalles-cell">
+                <ng-container *ngTemplateOutlet="subtabl; context: {$implicit: [element]}"></ng-container>
+            </mat-cell>
+        </ng-container>
+    </ng-container>
+
+    <mat-header-row class="mat-header-row" *matHeaderRowDef="dataColumns"></mat-header-row>
+    <mat-row class="mat-row" *matRowDef="let row; columns: dataColumns;"></mat-row>
+</mat-table>
+
+<ng-template #subtabl let-datasource>
+    <table id="subtable" mat-table class="no-bottom-border" [dataSource]="datasource">
+        <ng-container matColumnDef="estado">
+            <mat-header-cell *matHeaderCellDef>Estado</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <ng-container *ngFor="let tide of element?.tideDetail">
+                    <mat-cell>{{tide.estado}}</mat-cell>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="hora">
+            <mat-header-cell *matHeaderCellDef>Hora</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <ng-container *ngFor="let tide of element?.tideDetail">
+                    <mat-cell>{{tide.hora}}h</mat-cell>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="altura">
+            <mat-header-cell *matHeaderCellDef>Altura</mat-header-cell>
+            <mat-cell *matCellDef="let element">
+                <ng-container *ngFor="let tide of element?.tideDetail">
+                    <mat-cell>{{tide.altura}}m</mat-cell>
+                </ng-container>
+            </mat-cell>
+        </ng-container>
+        <tr id="mat-header-row-detalles" mat-header-row *matHeaderRowDef="subcolumns"></tr>
+        <tr id="mat-row-detalles" mat-row *matRowDef="let row; columns: subcolumns"></tr>
+    </table>
+</ng-template>
